@@ -1,75 +1,34 @@
-NAME		= libft.a
+NAME		= fdf
 TARGET		= $(BUILD_DIR)/$(NAME)
 CC			= cc
-AR			= ar -rcs
 CFLAGS		= -Wall -Wextra -Werror -g3
 
-OBJ_DIR		= obj
-INC			= include
+OBJ_DIR		= $(BUILD_DIR)/obj
 BUILD_DIR	= build
+LIBFT_DIR	= ./lib/KML
+MLX_DIR		= ./lib/MLX42
 
-SRC			= src/linkedList/ft_lstadd_back_bonus.c \
-			  src/linkedList/ft_lstadd_front_bonus.c \
-			  src/linkedList/ft_lstclear_bonus.c \
-			  src/linkedList/ft_lstdelone_bonus.c \
-			  src/linkedList/ft_lstiter_bonus.c \
-			  src/linkedList/ft_lstlast_bonus.c \
-			  src/linkedList/ft_lstmap_bonus.c \
-			  src/linkedList/ft_lstnew_bonus.c \
-			  src/linkedList/ft_lstsize_bonus.c \
-			  src/memmory/ft_bzero.c \
-			  src/memmory/ft_calloc.c \
-			  src/memmory/ft_memchr.c \
-			  src/memmory/ft_memcmp.c \
-			  src/memmory/ft_memcpy.c \
-			  src/memmory/ft_memmove.c \
-			  src/monitor/ft_printf.c \
-			  src/monitor/ft_printf_fd.c \
-			  src/monitor/ft_putchar_fd.c \
-			  src/monitor/ft_putendl_fd.c \
-			  src/monitor/ft_putnbr_fd.c \
-			  src/monitor/ft_putstr_fd.c \
-			  src/number/ft_atoi.c \
-			  src/number/ft_itoa.c \
-			  src/string/argstr.c \
-			  src/string/fjoin.c \
-			  src/string/fsplit.c \
-			  src/string/ft_split.c \
-			  src/string/ft_strchr.c \
-			  src/string/ft_strdup.c \
-			  src/string/ft_striteri.c \
-			  src/string/ft_strjoin.c \
-			  src/string/ft_strlcat.c \
-			  src/string/ft_strlcpy.c \
-			  src/string/ft_strlen.c \
-			  src/string/ft_strmapi.c \
-			  src/string/ft_strncmp.c \
-			  src/string/ft_strnstr.c \
-			  src/string/ft_strrchr.c \
-			  src/string/ft_strtrim.c \
-			  src/string/ft_substr.c \
-			  src/string/gnl.c \
-			  src/utilsFunction/ft_isalnum.c \
-			  src/utilsFunction/ft_isalpha.c \
-			  src/utilsFunction/ft_isascii.c \
-			  src/utilsFunction/ft_isdigit.c \
-			  src/utilsFunction/ft_isprint.c \
-			  src/utilsFunction/ft_tolower.c \
-			  src/utilsFunction/ft_toupper.c \
+HEADER		= -I ./include -I $(LIBFT_DIR)/include -I $(MLX_DIR)/include
+LIBS		= $(LIBFT_DIR)/build/libft.a $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
+
+SRC			= src/main.c
+
 # delete pathfile(notdie) and delete.c(basname) and add.o(addsuffix) and add obj/(addprefix)
 OBJ			= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(basename $(notdir $(SRC)))))
 
 all: $(NAME)
 
-$(NAME): $(TARGET)
+$(NAME): lib $(TARGET)
 
 $(TARGET): $(OBJ) | $(BUILD_DIR)
-	@$(AR) $@ $(OBJ)
-	@printf "\033[38;5;46m\033[1mCompliling \033[38;5;226m\033[1m⟪"
-	@for i in $$(seq 1 60); do echo -n "⏹"; sleep 0.055; done; printf "⟫\033[0m\n"
+	$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADER) -o $@ && printf "\033[38;5;46m\033[1m⟪ Complete ⟫\033[0m\n" 
 
-$(OBJ): $(SRC) Makefile | $(OBJ_DIR) #████▒▒▒▒▒▒  ⏹ ⌋ᒧ ᒥ 〈〉 ┫┣ ⟪⟫
-	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+lib:
+	@make -C $(LIBFT_DIR)
+	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
+
+$(OBJ): $(SRC) Makefile | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
@@ -77,12 +36,19 @@ $(OBJ_DIR):
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
 
-clean:
+clean_lib:
+	@rm -rf $(LIBFT_DIR)/obj
+	@rm -rf $(MLX_DIR)/build
+
+fclean_lib:
+	@rm -rf $(LIBFT_DIR)/build
+
+clean: clean_lib
 	@rm -rf $(OBJ_DIR)
 
-fclean: clean
+fclean: clean fclean_lib
 	@rm -rf $(BUILD_DIR)
 
-re: fclean all
+re: fclean $(NAME)
 
-.PHONY: clean fclean re
+.PHONY: all clean fclean re clean_lib fclean_lib lib

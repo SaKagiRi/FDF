@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/12 19:52:14 by knakto            #+#    #+#             */
-/*   Updated: 2025/01/12 19:52:14 by knakto           ###   ########.fr       */
+/*   Created: 2025/01/13 14:53:19 by knakto            #+#    #+#             */
+/*   Updated: 2025/01/13 14:53:19 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#ifndef FDF_H
+# define FDF_H
 
-int	main(void)
+# include "../lib/KML/include/kml.h"
+# include "error.h"
+#include "fcntl.h"
+
+typedef struct s_pixel
 {
-	store(NULL, "map/map_1.txt");
-	return (0);
-}
+	long	color;
+	int		height;
+	int		x;
+	int		y;
+}	t_pixel;
+
+void	store(t_list *head, char *map);
+
+#endif

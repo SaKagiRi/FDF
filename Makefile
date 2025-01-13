@@ -1,7 +1,7 @@
 NAME		= fdf
 TARGET		= $(BUILD_DIR)/$(NAME)
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g3
+CFLAGS		= #-Wall -Wextra -Werror -g3
 
 OBJ_DIR		= $(BUILD_DIR)/obj
 BUILD_DIR	= build
@@ -11,23 +11,30 @@ MLX_DIR		= ./lib/MLX42
 HEADER		= -I ./include -I $(LIBFT_DIR)/include -I $(MLX_DIR)/include
 LIBS		= $(LIBFT_DIR)/build/kml.a $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
-SRC			= src/main.c
+SRC			= src/main.c \
+			  src/debug_map/store_map.c \
+			  src/error/ft_error.c
 
-# delete pathfile(notdie) and delete.c(basname) and add.o(addsuffix) and add obj/(addprefix)
-OBJ			= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(basename $(notdir $(SRC)))))
+OBJ			= $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): lib $(TARGET)
 
 $(TARGET): $(OBJ) | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADER) -o $@ && printf "\033[38;5;46m\033[1m⟪ Complete ⟫\033[0m\n" 
+	@if [ -f $@ ] && [ "$(OBJ_DIR)/$(notdir $(word 1, $(OBJ)))" -nt "$(word 1, $(SRC))" ] && [ "$(OBJ_DIR)/$(notdir $(word 1, $(OBJ)))" -ot "$@" ]; then \
+		echo "$(NAME) is up to date"; \
+		rm -rf $(OBJ); \
+	else \
+		$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADER) -o $@ && mv $(OBJ) $(OBJ_DIR); \
+		printf "\033[38;5;46m\033[1m⟪ Complete ⟫\033[0m\n"; \
+	fi
 
 lib:
 	@make -C $(LIBFT_DIR)
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 
-$(OBJ): $(SRC) Makefile | $(OBJ_DIR)
+%.o: %.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
 
 $(OBJ_DIR):
@@ -45,6 +52,7 @@ fclean_lib:
 
 clean: clean_lib
 	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ)
 
 fclean: clean fclean_lib
 	@rm -rf $(BUILD_DIR)

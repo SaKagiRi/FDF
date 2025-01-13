@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/12 19:52:14 by knakto            #+#    #+#             */
-/*   Updated: 2025/01/12 19:52:14 by knakto           ###   ########.fr       */
+/*   Created: 2025/01/13 16:21:48 by knakto            #+#    #+#             */
+/*   Updated: 2025/01/13 16:21:48 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#ifndef ERROR_H
+# define ERROR_H
 
-int	main(void)
+typedef enum e_error
 {
-	store(NULL, "map/map_1.txt");
-	return (0);
-}
+	FREE,
+	FREESPLIT,
+	UNFREE
+}	t_error;
+
+void	show_error(char *text);
+void	ft_error(char *text_exit, int exit_code, int free_code, void *content);
+void	error_fail_check_in_store(char **arg, char *line, int fd);
+
+#endif

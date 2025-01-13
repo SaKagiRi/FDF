@@ -1,88 +1,90 @@
-NAME		= libft.a
-TARGET		= $(BUILD_DIR)/$(NAME)
-CC			= cc
-AR			= ar -rcs
-CFLAGS		= -Wall -Wextra -Werror -g3
+NAME 			= $(BUILD)/kml.a
+FILE			= ft_atoi.c \
+				ft_itoa.c \
+				ft_bzero.c \
+				ft_split.c \
+				ft_strlen.c \
+				ft_memset.c \
+				ft_memcpy.c \
+				ft_memchr.c \
+				ft_memcmp.c \
+				ft_strchr.c \
+				ft_calloc.c \
+				ft_strdup.c \
+				ft_substr.c \
+				ft_isalnum.c \
+				ft_isalpha.c \
+				ft_isascii.c \
+				ft_isdigit.c \
+				ft_isprint.c \
+				ft_toupper.c \
+				ft_tolower.c \
+				ft_strlcpy.c \
+				ft_strlcat.c \
+				ft_strmapi.c \
+				ft_strncmp.c \
+				ft_strnstr.c  \
+				ft_strrchr.c \
+				ft_memmove.c \
+				ft_strjoin.c \
+				ft_strtrim.c \
+				ft_striteri.c \
+				ft_putstr_fd.c \
+				ft_putnbr_fd.c \
+				ft_putchar_fd.c \
+				ft_putendl_fd.c \
+				ft_lstmap_bonus.c \
+				ft_lstnew_bonus.c \
+				ft_lstsize_bonus.c \
+				ft_lstiter_bonus.c \
+				ft_lstlast_bonus.c \
+				ft_lstclear_bonus.c \
+				ft_lstdelone_bonus.c \
+				ft_lstadd_back_bonus.c \
+				ft_lstadd_front_bonus.c \
+				ft_printf.c \
+				gnl.c \
+				argstr.c \
+				fsplit.c \
+				fjoin.c
 
-OBJ_DIR		= obj
-INC			= include
-BUILD_DIR	= build
+CC 				= cc
+AR_AND_FLAGS	= ar -rcs
+RM				= rm -rf
+CFLAGS			= -Wall -Wextra -Werror 
+MKDIR			= mkdir -p
+src_dir			= src
+obj_dir			= obj
+inc				= -I include
+BUILD			= build
+OBJ				= $(addprefix $(obj_dir)/, $(FILE:%.c=%.o))
 
-SRC			= src/linkedList/ft_lstadd_back_bonus.c \
-			  src/linkedList/ft_lstadd_front_bonus.c \
-			  src/linkedList/ft_lstclear_bonus.c \
-			  src/linkedList/ft_lstdelone_bonus.c \
-			  src/linkedList/ft_lstiter_bonus.c \
-			  src/linkedList/ft_lstlast_bonus.c \
-			  src/linkedList/ft_lstmap_bonus.c \
-			  src/linkedList/ft_lstnew_bonus.c \
-			  src/linkedList/ft_lstsize_bonus.c \
-			  src/memmory/ft_bzero.c \
-			  src/memmory/ft_calloc.c \
-			  src/memmory/ft_memchr.c \
-			  src/memmory/ft_memcmp.c \
-			  src/memmory/ft_memcpy.c \
-			  src/memmory/ft_memmove.c \
-			  src/monitor/ft_printf.c \
-			  src/monitor/ft_printf_fd.c \
-			  src/monitor/ft_putchar_fd.c \
-			  src/monitor/ft_putendl_fd.c \
-			  src/monitor/ft_putnbr_fd.c \
-			  src/monitor/ft_putstr_fd.c \
-			  src/number/ft_atoi.c \
-			  src/number/ft_itoa.c \
-			  src/string/argstr.c \
-			  src/string/fjoin.c \
-			  src/string/fsplit.c \
-			  src/string/ft_split.c \
-			  src/string/ft_strchr.c \
-			  src/string/ft_strdup.c \
-			  src/string/ft_striteri.c \
-			  src/string/ft_strjoin.c \
-			  src/string/ft_strlcat.c \
-			  src/string/ft_strlcpy.c \
-			  src/string/ft_strlen.c \
-			  src/string/ft_strmapi.c \
-			  src/string/ft_strncmp.c \
-			  src/string/ft_strnstr.c \
-			  src/string/ft_strrchr.c \
-			  src/string/ft_strtrim.c \
-			  src/string/ft_substr.c \
-			  src/string/gnl.c \
-			  src/utilsFunction/ft_isalnum.c \
-			  src/utilsFunction/ft_isalpha.c \
-			  src/utilsFunction/ft_isascii.c \
-			  src/utilsFunction/ft_isdigit.c \
-			  src/utilsFunction/ft_isprint.c \
-			  src/utilsFunction/ft_tolower.c \
-			  src/utilsFunction/ft_toupper.c \
-# delete pathfile(notdie) and delete.c(basname) and add.o(addsuffix) and add obj/(addprefix)
-OBJ			= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(basename $(notdir $(SRC)))))
+all				:$(obj_dir) $(NAME)
 
-all: $(NAME)
+$(obj_dir)/%.o	:$(src_dir)/%.c
+				@$(CC) $(CFLAGS) $(inc) -c $< -o $@
 
-$(NAME): $(TARGET)
+$(NAME)			:$(OBJ) | $(BUILD)
+				@$(AR_AND_FLAGS) $@ $^
+				@printf "\033[38;5;46m\033[1mCompliling \033[38;5;226m\033[1m |"
+				@for i in $$(seq 1 50); do printf "\rProgress: [%-10s] %d%%" "$$(head -c $$i < /dev/zero | tr '\0' '+')" "$$((i * 2))"; sleep 0.05; done
+				@printf "| \033[0m\n"
 
-$(TARGET): $(OBJ) | $(BUILD_DIR)
-	@$(AR) $@ $(OBJ)
-	@printf "\033[38;5;46m\033[1mCompliling \033[38;5;226m\033[1m⟪"
-	@for i in $$(seq 1 60); do echo -n "⏹"; sleep 0.055; done; printf "⟫\033[0m\n"
+$(BUILD)		:
+				@mkdir -p build
 
-$(OBJ): $(SRC) Makefile | $(OBJ_DIR) #████▒▒▒▒▒▒  ⏹ ⌋ᒧ ᒥ 〈〉 ┫┣ ⟪⟫
-	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+$(obj_dir)		:
+				@$(MKDIR) $(obj_dir)
 
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+clean			:
+				@$(RM) $(obj_dir)
 
-$(BUILD_DIR):
-	@mkdir -p $(BUILD_DIR)
+fclean			:clean
+				@$(RM) $(out_dir)/$(NAME)
+				@$(RM) $(BUILD)
 
-clean:
-	@rm -rf $(OBJ_DIR)
+re				:fclean all
 
-fclean: clean
-	@rm -rf $(BUILD_DIR)
 
-re: fclean all
+.PHONY			: all re clean fclean bonus generate start coppy_header
 
-.PHONY: clean fclean re

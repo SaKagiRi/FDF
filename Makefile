@@ -9,7 +9,7 @@ LIBFT_DIR	= ./lib/KML
 MLX_DIR		= ./lib/MLX42
 
 HEADER		= -I ./include -I $(LIBFT_DIR)/include -I $(MLX_DIR)/include
-LIBS		= $(LIBFT_DIR)/build/libft.a $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
+LIBS		= $(LIBFT_DIR)/build/kml.a $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 SRC			= src/main.c
 
@@ -28,7 +28,7 @@ lib:
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 
 $(OBJ): $(SRC) Makefile | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)

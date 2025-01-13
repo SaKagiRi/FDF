@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/KML/include/monitor.h"
+#include "kml.h"
 
 int	main(void)
 {

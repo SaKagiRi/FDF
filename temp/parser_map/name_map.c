@@ -1,21 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
+/*   name_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: knakto <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/05 15:52:26 by knakto            #+#    #+#             */
-/*   Updated: 2024/09/05 15:54:40 by knakto           ###   ########.fr       */
+/*   Created: 2025/01/20 21:24:32 by knakto            #+#    #+#             */
+/*   Updated: 2025/01/20 21:24:32 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/kml.h"
+#include "../../include/fdf.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
-{
-	if (lst == NULL || f == NULL)
-		return ;
-	f(lst->content);
-	ft_lstiter(lst->next, f);
-}

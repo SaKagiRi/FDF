@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
+/*   show_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: knakto <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/05 15:52:26 by knakto            #+#    #+#             */
-/*   Updated: 2024/09/05 15:54:40 by knakto           ###   ########.fr       */
+/*   Created: 2025/01/19 00:43:02 by knakto            #+#    #+#             */
+/*   Updated: 2025/01/19 00:43:02 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/kml.h"
+#include "../../include/fdf.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	ft_error(char *text)
 {
-	if (lst == NULL || f == NULL)
-		return ;
-	f(lst->content);
-	ft_lstiter(lst->next, f);
+	ft_putendl_fd(text, 2);
+	exit(1);
 }

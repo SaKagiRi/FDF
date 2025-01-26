@@ -19,34 +19,7 @@
 # include <stdarg.h>
 # include <fcntl.h>
 
-/*for get_next_line*/
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2048
-# endif
-
-# ifndef LIMIT
-#  define LIMIT 10000
-# endif
-
-typedef struct s_lst
-{
-	char			content[BUFFER_SIZE];
-	size_t			len;
-	struct s_lst	*next;
-}	t_lst;
-
-typedef struct s_var
-{
-	int		fd;
-	int		eof;
-	int		fin;
-	t_lst	*word;
-	t_lst	*run;
-	size_t	offset;
-	size_t	nlb;
-}	t_var;
-
-char	*get_next_line(int fd);
+# include "get_next_line.h"
 
 /*for lib*/
 typedef struct s_list
@@ -55,9 +28,16 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+void	ft_lstremove_if(t_list **list, void *data_ref,
+			int (*cmp)(void *content, void *data_ref),
+			void (*del)(void *content));
+t_list	*ft_list_find(t_list *list, void *data_ref,
+			int (*cmp)(void *content, void *data_ref));
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_lstiter_if(t_list *list, void (*f)(void *), void *data_ref,
+			int (*cmp)(void *contnet, void *data_ref));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_lstadd_front(t_list **lst, t_list *node);
 void	ft_lstadd_back(t_list **lst, t_list *node);
@@ -107,4 +87,6 @@ char	*argstr(char *find, char **n);
 char	**free_split(char **alloc);
 char	**fsplit(char *s, char c);
 
+long	ft_atol(const char *nptr);
+long	ft_htol(const char *nptr);
 #endif

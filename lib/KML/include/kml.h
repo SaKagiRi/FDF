@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 15:31:29 by knakto            #+#    #+#             */
-/*   Updated: 2024/11/17 22:29:37 by knakto           ###   ########.fr       */
+/*   Updated: 2025/02/24 16:53:06 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int	ft_find(char *str, char c);
+size_t	count_word(char *s, char c);
 void	ft_lstremove_if(t_list **list, void *data_ref,
 			int (*cmp)(void *content, void *data_ref),
 			void (*del)(void *content));
@@ -89,4 +91,21 @@ char	**fsplit(char *s, char c);
 
 long	ft_atol(const char *nptr);
 long	ft_htol(const char *nptr);
+
+//env
+//*   env_utils.c                         :+:      :+:    :+:   */
+char	**envhead(void);
+void	ft_envinit(void);
+void	ft_unset(void);
+void	ft_envput(void);
+//*   env_function.c                      :+:      :+:    :+:   */
+char	*find_env(char	*name);
+char	*ft_envcreate(char *name, char *value);
+void	ft_envadd(char *name, char *value);
+void	ft_envupdate(char *name, char *value);
+void	ft_envdelete(char	*name);
+//*   env.c                               :+:      :+:    :+:   */
+char	*ft_envget(char *name);
+void	ft_export(char	*content);
+
 #endif

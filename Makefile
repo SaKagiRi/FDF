@@ -11,16 +11,13 @@ MLX_DIR		= ./lib/MLX42
 HEADER		= -I ./include -I $(LIBFT_DIR)/include -I $(MLX_DIR)/include
 LIBS		= $(LIBFT_DIR)/kml.a $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
-SRC			= src/main.c \
-			  src/init_map.c \
-			  src/setting.c \
-			  src/setting_map.c
-# \
-			  src/error/show_error.c \
-			  src/parser_map/init_map.c \
-			  src/parser_map/store_map.c \
-			  src/parser_map/name_map.c \
-			  src/parser_map/number_map.c
+FILE_M		= clear.c main.c init.c get_variable.c
+FILE_S1		= parser.c store_map.c
+
+MAIN		= $(addprefix src/main/, $(FILE_M))
+STAGE_1		= $(addprefix src/stage_1/, $(FILE_S1))
+
+SRC			= $(MAIN) $(STAGE_1)
 
 OBJ			= $(SRC:.c=.o)
 

@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_error.c                                       :+:      :+:    :+:   */
+/*   get_variable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/19 00:43:02 by knakto            #+#    #+#             */
-/*   Updated: 2025/01/19 00:43:02 by knakto           ###   ########.fr       */
+/*   Created: 2025/03/08 13:20:18 by knakto            #+#    #+#             */
+/*   Updated: 2025/03/08 17:53:17 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-void	ft_error(char *text)
+t_fdf	*get_t_fdf(void)
 {
-	ft_putendl_fd(text, 2);
-	exit(1);
+	static t_fdf	fdf;
+
+	return (&fdf);
 }

@@ -5,59 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 14:53:19 by knakto            #+#    #+#             */
-/*   Updated: 2025/01/13 14:53:19 by knakto           ###   ########.fr       */
+/*   Created: 2025/02/23 07:56:00 by knakto            #+#    #+#             */
+/*   Updated: 2025/03/08 17:15:28 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "../lib/KML/include/kml.h"
-# include <fcntl.h>
 # include <stdlib.h>
-# include <stdbool.h>
-# include <limits.h>
+# include <unistd.h>
+# include <fcntl.h>
+#include <limits.h>
+# include <math.h>
+# include "../lib/KML/include/kml.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 
-typedef struct s_setting
-{
-}	t_setting;
+# define CONFIG ".kconf"
+# define WIDTH 1920
+# define HEIGHT 1080
+# define PI 3.14159265
 
-typedef struct s_pixel
+typedef enum e_type
 {
-	char	*all;
+	SET_Y,
+	SET_COLOR,
+}	t_name;
+
+typedef struct s_point
+{
 	long	color;
-	int		z;
-	int		x;
-	int		y;
-}	t_pixel;
+	float		y;
+	float		plot_x;
+	float		plot_y;
+}	t_point;
 
-typedef struct s_map
+typedef struct s_tool
 {
-	int			height;
-	int			width;
-	char		*map_name;
-	t_list		*head_y;
-	bool		setting_enable;
-	bool		map_color;
-	int			size;
-	char		*keybind;
-}	t_map;
+	char	*mapname;
+	char	*line;
+	int		x;
+	int		z;
+	int		temp_x;
+	int		fd;
+	int		status;
+}	t_tool;
 
-int	pars_simple_map(char *map);
-void	init_map(t_map *map, char *name_map);
-void	setting(t_map *map);
-void	split_color(t_map *map);
-/*void	del_all(void *content);
+typedef struct s_fdf
+{
+	int				map_fd;
+	int				config_fd;
+	bool			err;
+	bool			color;
+	bool			change;
+	float			height;
+	float			width;
+	float			px;
+	float			py;
+	float			zoom;
+	float			x_degree;
+	float			z_degree;
+	float			y_degree;
+	t_point			***map;
+	t_list			*all_map;
+	void			**endline;
+	void			**headline;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	mlx_texture_t	*texture;
+}	t_fdf;
 
-void	ft_error(char *text);
-void	init_map(t_map *map, char *name_map);
-void	dot_fdf(t_map *map);
-void	store_map(t_map *map);
+typedef struct s_draw
+{
+	char	axis;
+	long	col1;
+	long	col2;
+	float	rx;
+	float	rz;
+	float	x1;
+	float	z1;
+	float	x2;
+	float	z2;
+	float	dx;
+	float	dy;
+	float	diff;
+	float	inc;
+}	t_draw;
 
-t_pixel	*convert(t_list *node);
+void	init(void);
+void	clear(int stage);
+t_fdf	*get_t_fdf(void);
+void	pars_map_name(char **v, char **env);
+void	store_map(void);
 
-int	check_number(t_map *map);
-void	add_y_and_color(t_map *map);
-*/
 #endif

@@ -6,13 +6,13 @@
 /*   By: knakto <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 23:12:48 by knakto            #+#    #+#             */
-/*   Updated: 2024/11/18 13:58:23 by knakto           ###   ########.fr       */
+/*   Updated: 2025/02/23 09:31:00 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/kml.h"
 
-static size_t	count_word(char *s, char c)
+size_t	count_word(char *s, char c)
 {
 	size_t	count;
 	size_t	i;

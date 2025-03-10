@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 04:05:45 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/10 17:39:53 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 02:33:44 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	fill_background(mlx_texture_t *texture)
 		x = 0;
 		while (x < texture->width)
 		{
-			draw_texture(texture, x, y, 0xFFF);
+			draw_texture(texture, x, y, 0x0);
 			x++;
 		}
 		y++;

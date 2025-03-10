@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 02:29:20 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/10 19:54:21 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/10 20:00:22 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 	if ((modifier.key == MLX_KEY_LEFT_CONTROL && modifier.action == 1) && (keydata.action == 1 && keydata.key == MLX_KEY_D) && keydata.modifier == 2)
 		pnf("success\n\n\n");
 	if (keydata.key == MLX_KEY_Z && fdf->zoom < 100)
-		fdf->zoom += 1;
+		fdf->zoom += 4;
 	if (keydata.key == MLX_KEY_X && fdf->zoom > 20)
-		fdf->zoom -= 1;
+		fdf->zoom -= 4;
 	if (keydata.key == MLX_KEY_W)
-		fdf->py += 0.5;
+		fdf->py += 2;
 	if (keydata.key == MLX_KEY_S)
-		fdf->py -= 0.5;
+		fdf->py -= 2;
 	if (keydata.key == MLX_KEY_A)
-		fdf->px += 0.5;
+		fdf->px += 2;
 	if (keydata.key == MLX_KEY_D)
-		fdf->px -= 0.5;
+		fdf->px -= 2;
 	if (keydata.key == MLX_KEY_Q)
 	{
 		if (keydata.action == 2)
@@ -124,7 +124,7 @@ void	initmlx(void)
 	int		k;
 
 	fdf = get_t_fdf();
-	fdf->mlx = mlx_init(WIDTH, HEIGHT, "test", true);
+	fdf->mlx = mlx_init(WIDTH, HEIGHT, "test", false);
 	// img = mlx_new_image(mlx, 256, 256);
 	// printf("%d, %d\n", texture->width, texture->height);	
 	fdf->texture = new_texture(WIDTH, HEIGHT);

@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:07:57 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/10 04:51:48 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 02:11:30 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	stage_1(char **v, char **env)
 {
 	pars_map_name(v, env);
 	store_map();
-	print_map();
+	// print_map();
 	endstage_1();
 }
 
@@ -77,7 +77,7 @@ void	stage_1(char **v, char **env)
 void	stage_2(void)
 {
 	get_config_files();
-	print_bind();
+	// print_bind();
 }
 
 /* NOTE:

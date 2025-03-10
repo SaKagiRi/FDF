@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:40:43 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/10 19:48:13 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 02:10:44 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	x_line(t_fdf *fdf, t_point *start, t_point *stop)
 	while (pos.plot_x < stop-> plot_x)
 	{
 		if (pos.plot_x > 0 && pos.plot_y > 0 && pos.plot_x < WIDTH && pos.plot_y < HEIGHT)
-			draw_texture(fdf->texture, pos.plot_x, pos.plot_y, 0xFFFF);
+			draw_texture(fdf->texture, pos.plot_x, pos.plot_y, pos.color);
 		if (diff > 0)
 		{
 			pos.plot_y += inc;
@@ -67,7 +67,7 @@ static void	y_line(t_fdf *fdf, t_point *start, t_point *stop)
 	while (pos.plot_y < stop->plot_y && pos.plot_y < HEIGHT)
 	{
 		if (pos.plot_x > 0 && pos.plot_y > 0 && pos.plot_x < WIDTH && pos.plot_y < HEIGHT)
-			draw_texture(fdf->texture, pos.plot_x, pos.plot_y, 0xFFFF);
+			draw_texture(fdf->texture, pos.plot_x, pos.plot_y, pos.color);
 		if (diff > 0)
 		{
 			pos.plot_x += inc;

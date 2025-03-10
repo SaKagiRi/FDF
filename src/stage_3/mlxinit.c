@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 02:29:20 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/10 20:00:22 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 02:08:55 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 	if (keydata.modifier == 0)
 		modifier = keydata;
 	
-	pnf("key = %d\n", keydata.key);
-	pnf("key action = %d\n", keydata.action);
-	pnf("key modify = %d\n", keydata.modifier);
 	if ((modifier.key == MLX_KEY_LEFT_CONTROL && modifier.action == 1) && (keydata.action == 1 && keydata.key == MLX_KEY_D) && keydata.modifier == 2)
 		pnf("success\n\n\n");
 	if (keydata.key == MLX_KEY_Z && fdf->zoom < 100)
@@ -43,14 +40,14 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_Q)
 	{
 		if (keydata.action == 2)
-			fdf->z_degree -= 2;
+			fdf->z_degree -= 1;
 		else
 			fdf->z_degree -= 0.5;
 	}
 	if (keydata.key == MLX_KEY_E)
 	{
 		if (keydata.action == 2)
-			fdf->z_degree += 2;
+			fdf->z_degree += 1;
 		else
 			fdf->z_degree += 0.5;
 	}
@@ -105,13 +102,14 @@ void	hook(void *param)
 	fdf = get_t_fdf();
 	if (!fdf->change)
 		return ;
-	mlx_delete_texture(fdf->texture);
-	fdf->texture = new_texture(WIDTH, HEIGHT);
+	// mlx_delete_texture(fdf->texture);
+	// fdf->texture = new_texture(WIDTH, HEIGHT);
 	// testbresenham();
+	fill_background(fdf->texture);
 	connect_point();
 	fdf->img = mlx_texture_to_image(mlx, fdf->texture);
 	mlx_image_to_window(mlx, fdf->img, 0, 0);
-	fdf->change = 0;
+	fdf->change = false;
 	// mlx_delete_image(mlx, fdf->img);
 }
 
@@ -140,9 +138,9 @@ void	initmlx(void)
 	
 	// zoom();
 	// fdf->change = 1;
-	fdf->zoom = 50;
-	fdf->px = 500;
-	fdf->py = 500;
+	fdf->zoom = 1;
+	fdf->px = (float)WIDTH / 2;
+	fdf->py = (float)HEIGHT / 1.5;
 	// i = 0;
 	// j = 500;
 	// while (i++ < 500 && j-- > 0)

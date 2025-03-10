@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 07:56:00 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/10 19:59:00 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 02:03:37 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,6 @@ mlx_texture_t	*new_texture(size_t w, size_t h);
 void	bresenham(t_point start, t_point stop);
 void	initmlx(void);
 void	setpoint(t_point *p, t_fdf *fdf);
+void	fill_background(mlx_texture_t *texture);
 
 #endif

@@ -12,12 +12,16 @@ HEADER		= -I ./include -I $(LIBFT_DIR)/include -I $(MLX_DIR)/include
 LIBS		= $(LIBFT_DIR)/kml.a $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 FILE_M		= clear.c main.c init.c get_variable.c
-FILE_S1		= parser.c store_map.c
+FILE_S1		= parser.c store_map.c endstage.c
+FILE_S2		= bind.c key.c readconfig.c variable.c
+FILE_S3		= drawline.c mlxinit.c texture.c projection.c
 
 MAIN		= $(addprefix src/main/, $(FILE_M))
 STAGE_1		= $(addprefix src/stage_1/, $(FILE_S1))
+STAGE_2		= $(addprefix src/stage_2/, $(FILE_S2))
+STAGE_3		= $(addprefix src/stage_3/, $(FILE_S3))
 
-SRC			= $(MAIN) $(STAGE_1)
+SRC			= $(MAIN) $(STAGE_1) $(STAGE_2) $(STAGE_3)
 
 OBJ			= $(SRC:.c=.o)
 

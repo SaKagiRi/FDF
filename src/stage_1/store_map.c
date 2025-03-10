@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:24:43 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/08 17:53:32 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/10 04:37:50 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_point	**decript_line(char *line)
 	while (split[i])
 	{
 		res[i] = malloc(sizeof(t_point));
-		res[i]->y = (float)check_number(split[i], SET_Y);
+		res[i]->z = (float)check_number(split[i], SET_Y);
 		res[i]->color = check_number(ft_strchr(split[i], ','), SET_COLOR);
 		i++;
 	}
@@ -109,7 +109,6 @@ void	decriptmap_and_store_width(t_fdf *fdf)
 		map = map->next;
 	}
 	fdf->map[i] = NULL;
-	ft_lstclear(&(fdf->all_map), free);
 }
 
 void	store_map(void)

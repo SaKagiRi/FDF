@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:19:08 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/08 17:53:24 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/09 18:42:39 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,19 @@ void	check_config_file(char **env)
 	int		i;
 	int		fd;
 	t_fdf	*fdf;
+	char	*temp;
 
 	i = 0;
 	name_config = NULL;
-	while (env[i] && !ft_strncmp(env[i], "HOME=", 5))
+	while (env[i] && ft_strncmp(env[i], "HOME=", 5))
 		i++;
 	if (!env[i])
 		return ;
 	name_config = ft_strdup(env[i]);
-	name_config = fjoin(name_config, CONFIG);
+	temp = name_config;
+	name_config = ft_strjoin(name_config + 5, CONFIG);
 	fd = open(name_config, O_RDONLY);
+	free(temp);
 	free(name_config);
 	if (fd < 0)
 		return ;

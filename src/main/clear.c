@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:29:34 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/08 17:53:51 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/09 18:37:24 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	clear(int stage)
 		close(fdf->map_fd);
 		close(fdf->config_fd);
 		ft_free_point(fdf);
+		ft_lstclear(&fdf->bind, free);
 		ft_error(0);
 	}
 	else if (stage == 1)
@@ -57,6 +58,12 @@ void	clear(int stage)
 		close(fdf->config_fd);
 		ft_free_point(fdf);
 		ft_error(1);
+	}
+	else if (stage == 2)
+	{
+		close(fdf->config_fd);
+		ft_free_point(fdf);
+		ft_lstclear(&fdf->bind, free);
 	}
 	ft_error(0);
 }

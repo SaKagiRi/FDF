@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 07:56:00 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/08 17:15:28 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/10 19:05:40 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-#include <limits.h>
+# include <limits.h>
 # include <math.h>
 # include "../lib/KML/include/kml.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
-# define CONFIG ".kconf"
+# define CONFIG "/.kconf"
 # define WIDTH 1920
 # define HEIGHT 1080
-# define PI 3.14159265
+# define PI 3.14159
+
 
 typedef enum e_type
 {
@@ -34,8 +35,11 @@ typedef enum e_type
 
 typedef struct s_point
 {
-	long	color;
+	long		color;
+	float		z;
+	float		x;
 	float		y;
+	float		plot_z;
 	float		plot_x;
 	float		plot_y;
 }	t_point;
@@ -51,6 +55,14 @@ typedef struct s_tool
 	int		status;
 }	t_tool;
 
+typedef struct s_bind
+{
+	bool	modifier;
+	int		key1;
+	int		key2;
+	int		function;
+}	t_bind;
+
 typedef struct s_fdf
 {
 	int				map_fd;
@@ -58,6 +70,7 @@ typedef struct s_fdf
 	bool			err;
 	bool			color;
 	bool			change;
+	bool			mouse;
 	float			height;
 	float			width;
 	float			px;
@@ -66,10 +79,9 @@ typedef struct s_fdf
 	float			x_degree;
 	float			z_degree;
 	float			y_degree;
+	t_list			*bind;
 	t_point			***map;
 	t_list			*all_map;
-	void			**endline;
-	void			**headline;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	mlx_texture_t	*texture;
@@ -92,10 +104,27 @@ typedef struct s_draw
 	float	inc;
 }	t_draw;
 
+typedef struct s_2axis
+{
+	int		x;
+	int		y;
+	long	color;
+}	t_2axis;
+
 void	init(void);
 void	clear(int stage);
 t_fdf	*get_t_fdf(void);
 void	pars_map_name(char **v, char **env);
 void	store_map(void);
+void	endstage_1(void);
+void	binding(char *key, char *value);
+int		get_function_or_bind(char *f, int sw, t_bind *bind);
+void	get_config_files(void);
+void	variable(char *key, char *value);
+int	draw_texture(mlx_texture_t *texture, float x, float y, size_t rgb);
+mlx_texture_t	*new_texture(size_t w, size_t h);
+void	bresenham(t_point start, t_point stop);
+void	initmlx(void);
+void	setpoint(t_point *p, t_fdf *fdf);
 
 #endif

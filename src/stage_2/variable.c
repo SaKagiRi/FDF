@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:59:32 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 22:04:56 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 02:18:35 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	set_value_variable(char *key, int nb)
 		fdf->py = nb;
 	else if (!ft_strncmp(key, "color", 5))
 		fdf->line_color = nb;
+	else if (!ft_strncmp(key, "default", 7))
+		fdf->set_default = 0;
 }
 
 void	config_color(char *key, char *col)

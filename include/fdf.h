@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 07:56:00 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 23:24:58 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 02:18:40 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_fdf
 	int				rotate_size;
 	int				move_size;
 	int				zoom_size;
+	int				set_default;
 	bool			err;
 	long			line_color;
 	long			bg_color;
@@ -165,5 +166,7 @@ void			ft_rotate(t_fdf *fdf, int sw);
 void			ft_exit(t_fdf *fdf);
 long			scolor(t_point pos, t_point *start, t_point *stop);
 void			set_view(int view);
+void			clearcache(void *c);
+void			default_config(mlx_key_data_t d);
 
 #endif

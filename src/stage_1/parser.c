@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:19:08 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/09 18:42:39 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 02:03:59 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	check_fdf_file(char *name_map)
 
 	fdf = get_t_fdf();
 	if (!name_map)
-		clear(1);
+		return (0);
 	fd = open(name_map, O_RDONLY);
 	if (fd < 0)
-		clear(1);
+		return (0);
 	len = ft_strlen(name_map);
 	if (ft_strncmp(name_map + (len - 4), ".fdf", 4))
-		clear(1);
+		return (0);
 	fdf->map_fd = fd;
 	return (1);
 }

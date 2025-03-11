@@ -5,29 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 18:35:31 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/12 02:24:52 by knakto           ###   ########.fr       */
+/*   Created: 2025/03/12 02:06:50 by knakto            #+#    #+#             */
+/*   Updated: 2025/03/12 02:25:19 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-void	set_default(void)
+void	default_config(mlx_key_data_t d)
 {
 	t_fdf	*fdf;
 
 	fdf = get_t_fdf();
-	fdf->zoom = 20;
-	fdf->line_color = 0xFF;
-	fdf->bg_color = 0x0;
-	fdf->px = (float)WIDTH / 2;
-	fdf->py = (float)HEIGHT / 1.5;
-	fdf->x_degree = 55;
-	fdf->z_degree = 44.6999;
-	fdf->y_degree = 0;
-	fdf->rotate_size = 1;
-	fdf->move_size = 1;
-	fdf->zoom_size = 1;
-	fdf->line_color = 0xFFFFFF;
-	fdf->set_default = 1;
+	if (!fdf->set_default)
+		return ;
+	if (d.key == MLX_KEY_ESCAPE)
+	{
+		mlx_delete_image(fdf->mlx, fdf->img);
+		mlx_terminate(fdf->mlx);
+		clear(0);
+	}
+	else if (d.key == MLX_KEY_W)
+		fdf->py += fdf->move_size;
+	else if (d.key == MLX_KEY_S)
+		fdf->py -= fdf->move_size;
+	else if (d.key == MLX_KEY_A)
+		fdf->px += fdf->move_size;
+	else if (d.key == MLX_KEY_D)
+		fdf->px -= fdf->move_size;
+	fdf->change = 1;
 }

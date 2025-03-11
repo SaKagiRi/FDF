@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 03:53:22 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 22:42:46 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 02:00:50 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,18 @@ void	find_img(t_fdf *fdf)
 */
 void	cache(t_fdf *fdf)
 {
+	int		i;
+	t_list	*node;
+
+	i = 0;
+	node = fdf->bind;
+	while (node)
+	{
+		i++;
+		node = node->next;
+	}
+	if (i > 30)
+		ft_lstclear(&fdf->bind, clearcache);
 	if (!fdf->cache)
 		create_new_img(fdf);
 	find_img(fdf);

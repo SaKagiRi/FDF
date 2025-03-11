@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 18:50:59 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 22:30:40 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 02:17:45 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	control(mlx_key_data_t d, void *fdf)
 	t_list					*node;
 	t_bind					*b;
 
+	default_config(d);
 	if (d.modifier == 0)
 		m = d;
 	node = ((t_fdf *)fdf)->bind;

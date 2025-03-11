@@ -6,11 +6,31 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 02:29:20 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 02:08:55 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 16:57:55 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
+
+void	point_set(void)
+{
+	int	i;
+	int	j;
+	t_fdf	*fdf;
+
+	fdf = get_t_fdf();
+	i = 0;
+	while (fdf->map[i])
+	{
+		j = 0;
+		while (fdf->map[i][j])
+		{
+			setpoint(fdf->map[i][j], fdf);
+			j++;
+		}
+		i++;
+	}
+}
 
 void	keyhook(mlx_key_data_t keydata, void *param)
 {
@@ -54,9 +74,9 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_ESCAPE)
 	{
 		mlx_delete_image(fdf->mlx, fdf->img);
-		mlx_delete_texture(fdf->texture);
+		// mlx_delete_texture(fdf->texture);
 		mlx_terminate(fdf->mlx);
-		clear(0);
+		clear(3);
 	}
 	fdf->change = true;
 }
@@ -72,21 +92,23 @@ void	connect_point(void)
 	while (fdf->map[i])
 	{
 		j = 0;
-		while (fdf->map[i][j] && fdf->map[i][j + 1])
+		while (fdf->map[i][j])
 		{
-			bresenham(*fdf->map[i][j], *fdf->map[i][j + 1]);
+			if (fdf->map[i][j + 1])
+				bresenham(fdf, *fdf->map[i][j], *fdf->map[i][j + 1]);
+			// if (fdf->map[i + 1][j])
+			// 	bresenham(fdf, *fdf->map[i][j], *fdf->map[i + 1][j]);
 			j++;
 		}
 		i++;
 	}
 	i = 0;
-	while (fdf->map[i] && fdf->map[i + 1])
+	while (fdf->map[i + 1])
 	{
 		j = 0;
 		while (fdf->map[i][j])
 		{
-			bresenham(*fdf->map[i][j], *fdf->map[i + 1][j]);
-			// bresenham(fdf->map[i][j], fdf->map[i][j + 1]);
+			bresenham(fdf, *fdf->map[i][j], *fdf->map[i + 1][j]);
 			j++;
 		}
 		i++;
@@ -102,11 +124,14 @@ void	hook(void *param)
 	fdf = get_t_fdf();
 	if (!fdf->change)
 		return ;
+	mlx_delete_image(fdf->mlx, fdf->img);
+	cache(fdf);
 	// mlx_delete_texture(fdf->texture);
 	// fdf->texture = new_texture(WIDTH, HEIGHT);
 	// testbresenham();
-	fill_background(fdf->texture);
-	connect_point();
+	// point_set();
+	// fill_background(fdf->texture);
+	// connect_point();
 	fdf->img = mlx_texture_to_image(mlx, fdf->texture);
 	mlx_image_to_window(mlx, fdf->img, 0, 0);
 	fdf->change = false;
@@ -146,18 +171,7 @@ void	initmlx(void)
 	// while (i++ < 500 && j-- > 0)
 	// {
 	// }
-	//
-	// i = 0;
-	// while (fdf->map[i])
-	// {
-	// 	j = 0;
-	// 	while (fdf->map[i][j])
-	// 	{
-	// 		setpoint(fdf->map[i][j], fdf);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
+
 
 	// connect_point();
 	// // testbresenham();
@@ -169,6 +183,6 @@ void	initmlx(void)
 	mlx_loop_hook(fdf->mlx, hook, fdf->mlx);
 	mlx_loop(fdf->mlx);
 	mlx_delete_image(fdf->mlx, fdf->img);
-	mlx_delete_texture(fdf->texture);
+	// mlx_delete_texture(fdf->texture);
 	mlx_terminate(fdf->mlx);
 }

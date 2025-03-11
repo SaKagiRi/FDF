@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 07:56:00 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 02:03:37 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 16:51:09 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_fdf
 	float			x_degree;
 	float			z_degree;
 	float			y_degree;
+	t_list			*cache;
 	t_list			*bind;
 	t_point			***map;
 	t_list			*all_map;
@@ -104,12 +105,16 @@ typedef struct s_draw
 	float	inc;
 }	t_draw;
 
-typedef struct s_2axis
+typedef	struct	s_cache
 {
-	int		x;
-	int		y;
-	long	color;
-}	t_2axis;
+	float		zoom;
+	float		px;
+	float		py;
+	float		x_degree;
+	float		y_degree;
+	float		z_degree;
+	mlx_texture_t	*texture;
+}	t_cache;
 
 void	init(void);
 void	clear(int stage);
@@ -123,9 +128,13 @@ void	get_config_files(void);
 void	variable(char *key, char *value);
 int	draw_texture(mlx_texture_t *texture, float x, float y, size_t rgb);
 mlx_texture_t	*new_texture(size_t w, size_t h);
-void	bresenham(t_point start, t_point stop);
+void	bresenham(t_fdf *fdf ,t_point start, t_point stop);
 void	initmlx(void);
 void	setpoint(t_point *p, t_fdf *fdf);
+void	point_set(void);
+void	connect_point(void);
 void	fill_background(mlx_texture_t *texture);
+float	ft_abs(float a);
+void	cache(t_fdf *fdf);
 
 #endif

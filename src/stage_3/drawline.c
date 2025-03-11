@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:40:43 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 02:10:44 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 03:33:10 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,14 @@ static int	border_bound(t_point *ori, t_point *end)
 	return (1);
 }
 
-void	bresenham(t_point start, t_point stop)
+void	bresenham(t_fdf *fdf ,t_point start, t_point stop)
 {
-	t_fdf	*fdf;
+	static int i = 0;
 
-	fdf = get_t_fdf();
-	setpoint(&start, fdf);
-	setpoint(&stop, fdf);
+	pnf("draw %d\n", i++);
 	if (!border_bound(&start, &stop))
 		return ;
-	if (abs((int)stop.plot_y - (int)start.plot_y) < abs((int)stop.plot_x - (int)start.plot_x))
+	if (ft_abs(stop.plot_y - start.plot_y) < ft_abs(stop.plot_x - start.plot_x))
 	{
 		if (start.plot_x > stop.plot_x)
 			x_line(fdf, &stop, &start);

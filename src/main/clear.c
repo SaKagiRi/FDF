@@ -6,11 +6,17 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:29:34 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/09 18:37:24 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 16:51:19 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
+
+void	clearcache(void *c)
+{
+	mlx_delete_texture(((t_cache *)c)->texture);
+	free(c);
+}
 
 void	ft_error(int error_status)
 {
@@ -50,6 +56,7 @@ void	clear(int stage)
 		close(fdf->config_fd);
 		ft_free_point(fdf);
 		ft_lstclear(&fdf->bind, free);
+		ft_lstclear(&fdf->cache, clearcache);
 		ft_error(0);
 	}
 	else if (stage == 1)
@@ -64,6 +71,13 @@ void	clear(int stage)
 		close(fdf->config_fd);
 		ft_free_point(fdf);
 		ft_lstclear(&fdf->bind, free);
+	}
+	else if (stage == 3)
+	{
+		close(fdf->config_fd);
+		ft_free_point(fdf);
+		ft_lstclear(&fdf->bind, free);
+		ft_lstclear(&fdf->cache, clearcache);
 	}
 	ft_error(0);
 }

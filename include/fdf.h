@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 07:56:00 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 22:42:33 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 23:24:58 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,43 +126,44 @@ typedef struct s_draw
 	float	inc;
 }	t_draw;
 
-typedef	struct	s_cache
+typedef struct s_cache
 {
-	float		zoom;
-	float		px;
-	float		py;
-	float		x_degree;
-	float		y_degree;
-	float		z_degree;
+	float			zoom;
+	float			px;
+	float			py;
+	float			x_degree;
+	float			y_degree;
+	float			z_degree;
 	mlx_texture_t	*texture;
 }	t_cache;
 
-void	init(void);
-void	clear(int stage);
-t_fdf	*get_t_fdf(void);
-void	pars_map_name(char **v, char **env);
-void	store_map(void);
-void	endstage_1(void);
-void	binding(char *key, char *value);
-int		get_function_or_bind(char *f, int sw, t_bind *bind);
-void	get_config_files(void);
-void	variable(char *key, char *value);
-int		ft_texture(mlx_texture_t *texture, float x, float y, size_t rgb);
+void			init(void);
+void			clear(int stage);
+t_fdf			*get_t_fdf(void);
+void			pars_map_name(char **v, char **env);
+void			store_map(void);
+void			endstage_1(void);
+void			binding(char *key, char *value);
+int				get_function_or_bind(char *f, int sw, t_bind *bind);
+void			get_config_files(void);
+void			variable(char *key, char *value);
+int				ft_texture(mlx_texture_t *texture, \
+					float x, float y, size_t rgb);
 mlx_texture_t	*new_texture(size_t w, size_t h);
-void	bresenham(t_fdf *fdf ,t_point start, t_point stop);
-void	initmlx(void);
-void	setpoint(t_point *p, t_fdf *fdf);
-void	point_set(void);
-void	connect_point(t_fdf *fdf, int i, int j);
-void	fill_background(mlx_texture_t *texture);
-float	ft_abs(float a);
-void	cache(t_fdf *fdf);
-void	set_default(void);
-void	control(mlx_key_data_t d, void *fdf);
-void	ft_zoom(t_fdf *fdf, int sw);
-void	ft_rotate(t_fdf *fdf, int sw);
-void	ft_exit(t_fdf *fdf);
-long	scolor(t_point pos, t_point *start, t_point *stop);
-void	set_view(int view);
+void			bresenham(t_fdf *fdf, t_point start, t_point stop);
+void			initmlx(void);
+void			setpoint(t_point *p, t_fdf *fdf);
+void			point_set(void);
+void			connect_point(t_fdf *fdf, int i, int j);
+void			fill_background(mlx_texture_t *texture);
+float			ft_abs(float a);
+void			cache(t_fdf *fdf);
+void			set_default(void);
+void			control(mlx_key_data_t d, void *fdf);
+void			ft_zoom(t_fdf *fdf, int sw);
+void			ft_rotate(t_fdf *fdf, int sw);
+void			ft_exit(t_fdf *fdf);
+long			scolor(t_point pos, t_point *start, t_point *stop);
+void			set_view(int view);
 
 #endif

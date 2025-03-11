@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 18:35:31 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 22:47:17 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 22:49:18 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	set_default(void)
 	fdf->bg_color = 0x0;
 	fdf->px = (float)WIDTH / 2;
 	fdf->py = (float)HEIGHT / 1.5;
-	fdf->x_degree = 45;
-	fdf->z_degree = 35.264;
+	fdf->x_degree = 55;
+	fdf->z_degree = 44.6999;
 	fdf->y_degree = 0;
 	fdf->rotate_size = 1;
 	fdf->move_size = 1;

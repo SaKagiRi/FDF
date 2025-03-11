@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 20:30:55 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 22:35:28 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 22:49:27 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	set_view(int view)
 	fdf = get_t_fdf();
 	if (view == ISO)
 	{
-		// fdf->x_degree = 45;
 		fdf->x_degree = 55;
-		// fdf->z_degree = 35.264;
 		fdf->z_degree = 44.6999;
 		fdf->y_degree = 0;
 	}

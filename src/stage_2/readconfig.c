@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:05:11 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/10 02:14:49 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 22:44:51 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	set_bind(char *line)
 	char	**split;
 
 	if (ft_strncmp(line, "set -b", 6))
-		return;
+		return ;
 	split = ft_split(line, ' ');
 	if (arglen(split) != 4)
 	{
@@ -42,8 +42,8 @@ void	set_variable(char *line)
 {
 	char	**split;
 
-	if (ft_strncmp(line, "set -o", 6))
-		return;
+	if (ft_strncmp(line, "set -v", 6))
+		return ;
 	split = ft_split(line, ' ');
 	if (arglen(split) != 4)
 	{
@@ -60,7 +60,6 @@ void	read_config(t_fdf *fdf)
 	int		fd;
 
 	fd = fdf->config_fd;
-	pnf("bug fd->%d\n\n", fdf->config_fd);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -79,6 +78,7 @@ void	get_config_files(void)
 	t_fdf	*fdf;
 
 	fdf = get_t_fdf();
+	set_default();
 	if (fdf->config_fd <= 0)
 		return ;
 	read_config(fdf);

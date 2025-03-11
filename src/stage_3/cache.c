@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 03:53:22 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 17:11:48 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 22:42:46 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ void	create_new_img(t_fdf *fdf)
 {
 	fdf->texture = new_texture(WIDTH, HEIGHT);
 	point_set();
-	connect_point();
+	connect_point(fdf, 0, 0);
 	ft_lstadd_back(&fdf->cache, ft_lstnew(store_cache(fdf)));
 }
 
 t_cache	*check_config(t_fdf *fdf)
 {
-	t_cache *c;
+	t_cache	*c;
 	t_list	*node;
 
 	node = fdf->cache;

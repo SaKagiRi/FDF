@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:46:44 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 01:51:58 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 22:22:54 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,14 @@ static void	rotation_x(float *y, float *z)
 
 void	setpoint(t_point *p, t_fdf *fdf)
 {
-	p->plot_x = p->x * fdf->zoom;
-	p->plot_y = p->y * fdf->zoom;
-	p->plot_z = p->z * fdf->zoom;
-	rotation_z(&p->plot_x, &p->plot_y);
-	rotation_y(&p->plot_x, &p->plot_z);
-	rotation_x(&p->plot_y, &p->plot_z);
-	p->plot_x += fdf->px;
-	p->plot_y += fdf->py;
-	p->color = 0xFFFF;
+	p->px = p->x * fdf->zoom;
+	p->py = p->y * fdf->zoom;
+	p->pz = p->z * fdf->zoom;
+	rotation_z(&p->px, &p->py);
+	rotation_y(&p->px, &p->pz);
+	rotation_x(&p->py, &p->pz);
+	p->px += fdf->px;
+	p->py += fdf->py;
+	if (fdf->line_color != 0xFFFFFF && p->color == 0xFFFFFF)
+		p->color = fdf->line_color;
 }

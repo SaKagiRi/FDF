@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 07:56:00 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 16:51:09 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 22:42:33 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,30 @@
 # define HEIGHT 500
 # define PI 3.14159
 
+typedef enum e_fnc
+{
+	FT_ZOOM_IN = 100,
+	FT_ZOOM_OUT,
+	FT_MOVE_LEFT,
+	FT_MOVE_RIGHT,
+	FT_MOVE_UP,
+	FT_MOVE_DOWN,
+	FT_ROTATE_X_UP,
+	FT_ROTATE_X_DOWN,
+	FT_ROTATE_Y_UP,
+	FT_ROTATE_Y_DOWN,
+	FT_ROTATE_Z_UP,
+	FT_ROTATE_Z_DOWN,
+	FT_EXIT,
+	ISO,
+	BIRDVIEW,
+}	t_fnc;
 
 typedef enum e_type
 {
 	SET_Y,
 	SET_COLOR,
-}	t_name;
+}	t_type;
 
 typedef struct s_point
 {
@@ -39,9 +57,9 @@ typedef struct s_point
 	float		z;
 	float		x;
 	float		y;
-	float		plot_z;
-	float		plot_x;
-	float		plot_y;
+	float		pz;
+	float		px;
+	float		py;
 }	t_point;
 
 typedef struct s_tool
@@ -67,10 +85,13 @@ typedef struct s_fdf
 {
 	int				map_fd;
 	int				config_fd;
+	int				rotate_size;
+	int				move_size;
+	int				zoom_size;
 	bool			err;
-	bool			color;
+	long			line_color;
+	long			bg_color;
 	bool			change;
-	bool			mouse;
 	float			height;
 	float			width;
 	float			px;
@@ -126,15 +147,22 @@ void	binding(char *key, char *value);
 int		get_function_or_bind(char *f, int sw, t_bind *bind);
 void	get_config_files(void);
 void	variable(char *key, char *value);
-int	draw_texture(mlx_texture_t *texture, float x, float y, size_t rgb);
+int		ft_texture(mlx_texture_t *texture, float x, float y, size_t rgb);
 mlx_texture_t	*new_texture(size_t w, size_t h);
 void	bresenham(t_fdf *fdf ,t_point start, t_point stop);
 void	initmlx(void);
 void	setpoint(t_point *p, t_fdf *fdf);
 void	point_set(void);
-void	connect_point(void);
+void	connect_point(t_fdf *fdf, int i, int j);
 void	fill_background(mlx_texture_t *texture);
 float	ft_abs(float a);
 void	cache(t_fdf *fdf);
+void	set_default(void);
+void	control(mlx_key_data_t d, void *fdf);
+void	ft_zoom(t_fdf *fdf, int sw);
+void	ft_rotate(t_fdf *fdf, int sw);
+void	ft_exit(t_fdf *fdf);
+long	scolor(t_point pos, t_point *start, t_point *stop);
+void	set_view(int view);
 
 #endif

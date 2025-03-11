@@ -6,13 +6,13 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 04:05:45 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 02:33:44 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 22:39:07 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-int	draw_texture(mlx_texture_t *texture, float x, float y, size_t rgb)
+int	ft_texture(mlx_texture_t *texture, float x, float y, size_t rgb)
 {
 	size_t	position;
 
@@ -30,16 +30,18 @@ int	draw_texture(mlx_texture_t *texture, float x, float y, size_t rgb)
 
 void	fill_background(mlx_texture_t *texture)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	t_fdf	*fdf;
 
+	fdf = get_t_fdf();
 	y = 0;
 	while (y < texture->height)
 	{
 		x = 0;
 		while (x < texture->width)
 		{
-			draw_texture(texture, x, y, 0x0);
+			ft_texture(texture, x, y, fdf->bg_color);
 			x++;
 		}
 		y++;
@@ -62,4 +64,3 @@ mlx_texture_t	*new_texture(size_t w, size_t h)
 	fill_background(texture);
 	return (texture);
 }
-

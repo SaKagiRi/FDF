@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:24:43 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/10 04:37:50 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 22:19:13 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	readmap_and_store_height(t_fdf *fdf)
 static long	check_number(char *nb, int type)
 {
 	long	temp;
+	t_fdf	*fdf;
 
+	fdf = get_t_fdf();
 	if (type == SET_Y)
 	{
 		temp = ft_atol(nb);
@@ -51,7 +53,7 @@ static long	check_number(char *nb, int type)
 	}
 	else if (type == SET_COLOR)
 	{
-		temp = 0xFFF;
+		temp = fdf->line_color;
 		if (!nb)
 			return (temp);
 		if (ft_strncmp(nb + 1, "0x", 2))

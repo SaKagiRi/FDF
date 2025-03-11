@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:29:34 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 17:12:29 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 18:49:06 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,34 +50,23 @@ void	clear(int stage)
 	t_fdf	*fdf;
 
 	fdf = get_t_fdf();
+	close(fdf->config_fd);
+	ft_free_point(fdf);
 	if (stage == 0)
 	{
 		close(fdf->map_fd);
-		close(fdf->config_fd);
-		ft_free_point(fdf);
 		ft_lstclear(&fdf->bind, free);
 		ft_lstclear(&fdf->cache, clearcache);
 		ft_error(0);
 	}
 	else if (stage == 1)
-	{
 		close(fdf->map_fd);
-		close(fdf->config_fd);
-		ft_free_point(fdf);
-		ft_error(1);
-	}
 	else if (stage == 2)
-	{
-		close(fdf->config_fd);
-		ft_free_point(fdf);
 		ft_lstclear(&fdf->bind, free);
-	}
 	else if (stage == 3)
 	{
-		close(fdf->config_fd);
-		ft_free_point(fdf);
 		ft_lstclear(&fdf->bind, free);
 		ft_lstclear(&fdf->cache, clearcache);
 	}
-	ft_error(0);
+	ft_error(1);
 }

@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   set_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 13:19:23 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 21:55:55 by knakto           ###   ########.fr       */
+/*   Created: 2025/03/11 21:13:19 by knakto            #+#    #+#             */
+/*   Updated: 2025/03/11 22:40:54 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-void	init(void)
+long	scolor(t_point pos, t_point *start, t_point *stop)
 {
-	t_fdf	*fdf;
+	int	num;
 
-	fdf = get_t_fdf();
-	fdf->map_fd = 0;
-	fdf->config_fd = 0;
-	fdf->err = false;
-	fdf->change = true;
-	fdf->height = 0;
-	fdf->width = 0;
-	fdf->cache = NULL;
-	fdf->bind = NULL;
-	fdf->map = NULL;
-	fdf->mlx = NULL;
-	fdf->img = NULL;
-	fdf->texture = NULL;
-	fdf->line_color = 0xFFFFFF;
+	num = 1;
+	if (ft_abs(stop->py - start->py) < ft_abs(stop->px - start->px))
+		num = 2;
+	if (num == 1)
+	{
+		if (ft_abs(pos.px - start->px) < ft_abs(pos.px - stop->px))
+			return (start->color);
+		return (stop->color);
+	}
+	if (ft_abs(pos.py - start->py) < ft_abs(pos.py - stop->py))
+		return (start->color);
+	return (stop->color);
 }

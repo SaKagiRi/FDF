@@ -13,8 +13,8 @@ LIBS		= $(LIBFT_DIR)/kml.a $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 FILE_M		= clear.c main.c init.c get_variable.c
 FILE_S1		= parser.c store_map.c endstage.c
-FILE_S2		= bind.c key.c readconfig.c variable.c
-FILE_S3		= drawline.c mlxinit.c texture.c projection.c math.c cache.c
+FILE_S2		= bind.c key.c readconfig.c variable.c default.c
+FILE_S3		= drawline.c mlxinit.c texture.c projection.c math.c cache.c control_function.c utils_function.c set_color.c
 
 MAIN		= $(addprefix src/main/, $(FILE_M))
 STAGE_1		= $(addprefix src/stage_1/, $(FILE_S1))

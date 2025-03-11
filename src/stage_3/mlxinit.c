@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 02:29:20 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 16:57:55 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 17:13:38 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ void	hook(void *param)
 	fdf = get_t_fdf();
 	if (!fdf->change)
 		return ;
-	mlx_delete_image(fdf->mlx, fdf->img);
 	cache(fdf);
 	// mlx_delete_texture(fdf->texture);
 	// fdf->texture = new_texture(WIDTH, HEIGHT);
@@ -132,6 +131,7 @@ void	hook(void *param)
 	// point_set();
 	// fill_background(fdf->texture);
 	// connect_point();
+	mlx_delete_image(fdf->mlx, fdf->img);
 	fdf->img = mlx_texture_to_image(mlx, fdf->texture);
 	mlx_image_to_window(mlx, fdf->img, 0, 0);
 	fdf->change = false;
@@ -150,7 +150,7 @@ void	initmlx(void)
 	fdf->mlx = mlx_init(WIDTH, HEIGHT, "test", false);
 	// img = mlx_new_image(mlx, 256, 256);
 	// printf("%d, %d\n", texture->width, texture->height);	
-	fdf->texture = new_texture(WIDTH, HEIGHT);
+	// fdf->texture = new_texture(WIDTH, HEIGHT);
 	
 	// i = 0;
 	// fdf->change = true;

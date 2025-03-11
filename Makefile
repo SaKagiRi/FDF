@@ -33,6 +33,41 @@ $(TARGET): $(OBJ) | $(BUILD_DIR)
 		@$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADER) -o $@
 		@printf "\033[38;5;46m\033[1m⟪ Complete ⟫\033[0m\n"
 
+config:
+	echo "
+set -b ESCAPE ft_escape
+set -b x ft_zoom_out
+set -b z ft_zoom_in
+set -b w ft_rotate_x_up
+set -b s ft_rotate_x_down
+set -b e ft_rotate_y_up
+set -b q ft_rotate_y_down
+set -b d ft_rotate_z_up
+set -b a ft_rotate_z_down
+set -b UP ft_move_up
+set -b DOWN ft_move_down
+set -b LEFT ft_move_left
+set -b RIGHT ft_move_right
+
+# --wtf config-- #
+# set -v move 30
+# set -v rotate 30
+# set -v zoom 20
+
+# set -v start_x 1
+# set -v start_y 1
+
+# set -v color #0
+# set -v background #FFFFFF
+
+set -v move 2
+set -v rotate 2
+set -v zoom 1
+
+set -b <L_CTRL-a> birdview
+set -b <L_CTRL-d> iso
+" > ~/.kconf
+
 lib:
 	@make -C $(LIBFT_DIR)
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4

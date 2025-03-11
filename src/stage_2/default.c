@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 18:35:31 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 22:22:27 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/11 22:47:17 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_default(void)
 	t_fdf	*fdf;
 
 	fdf = get_t_fdf();
-	fdf->zoom = 1;
+	fdf->zoom = 20;
 	fdf->line_color = 0xFF;
 	fdf->bg_color = 0x0;
 	fdf->px = (float)WIDTH / 2;

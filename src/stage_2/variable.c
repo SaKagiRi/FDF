@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:59:32 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/12 02:18:35 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 07:09:41 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ static void	set_value_variable(char *key, int nb)
 		fdf->line_color = nb;
 	else if (!ft_strncmp(key, "default", 7))
 		fdf->set_default = 0;
+	else if (!ft_strncmp(key, "disco", 5))
+		fdf->disco = nb;
+	else if (!ft_strncmp(key, "enable_rot_color", 16))
+		fdf->rot = !nb;
+	else if (!ft_strncmp(key, "rot_color_mode", 14))
+		fdf->rot_color = nb;
 }
 
 void	config_color(char *key, char *col)

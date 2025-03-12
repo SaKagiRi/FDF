@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:46:44 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 22:22:54 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 06:59:31 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,13 @@ void	setpoint(t_point *p, t_fdf *fdf)
 	rotation_x(&p->py, &p->pz);
 	p->px += fdf->px;
 	p->py += fdf->py;
+	p->outcode = 0;
+	p->outcode |= (p->py > HEIGHT) << 3;
+	p->outcode |= (p->py < 0) << 2;
+	p->outcode |= (p->px > WIDTH) << 1;
+	p->outcode |= (p->px < 0) << 0;
+	if (!fdf->rot)
+		p->color = rot_color(p->color, fdf);
 	if (fdf->line_color != 0xFFFFFF && p->color == 0xFFFFFF)
 		p->color = fdf->line_color;
 }

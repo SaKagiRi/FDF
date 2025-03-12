@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:40:43 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 22:39:58 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 05:44:13 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static int	border_bound(t_point *ori, t_point *end)
 
 void	bresenham(t_fdf *fdf, t_point start, t_point stop)
 {
+	cohen(&start, &stop);
 	if (!border_bound(&start, &stop))
 		return ;
 	if (ft_abs(stop.py - start.py) < ft_abs(stop.px - start.px))

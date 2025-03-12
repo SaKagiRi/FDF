@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 07:56:00 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/12 02:18:40 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 06:55:25 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_point
 	float		pz;
 	float		px;
 	float		py;
+	char		outcode;
 }	t_point;
 
 typedef struct s_tool
@@ -83,12 +84,15 @@ typedef struct s_bind
 
 typedef struct s_fdf
 {
+	int				rot;
+	int				disco;
 	int				map_fd;
 	int				config_fd;
 	int				rotate_size;
 	int				move_size;
 	int				zoom_size;
 	int				set_default;
+	int				rot_color;
 	bool			err;
 	long			line_color;
 	long			bg_color;
@@ -156,6 +160,7 @@ void			initmlx(void);
 void			setpoint(t_point *p, t_fdf *fdf);
 void			point_set(void);
 void			connect_point(t_fdf *fdf, int i, int j);
+void			rev_connect_point(t_fdf *fdf, int i, int j);
 void			fill_background(mlx_texture_t *texture);
 float			ft_abs(float a);
 void			cache(t_fdf *fdf);
@@ -168,5 +173,7 @@ long			scolor(t_point pos, t_point *start, t_point *stop);
 void			set_view(int view);
 void			clearcache(void *c);
 void			default_config(mlx_key_data_t d);
+void			cohen(t_point *s1, t_point *s2);
+long			rot_color(long col, t_fdf *fdf);
 
 #endif

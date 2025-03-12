@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 03:53:22 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/12 02:00:50 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 06:28:22 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	create_new_img(t_fdf *fdf)
 {
 	fdf->texture = new_texture(WIDTH, HEIGHT);
 	point_set();
-	connect_point(fdf, 0, 0);
+	if (fdf->z_degree > 90 && fdf->z_degree <= 270)
+		rev_connect_point(fdf, 0, 0);
+	else
+		connect_point(fdf, 0, 0);
 	ft_lstadd_back(&fdf->cache, ft_lstnew(store_cache(fdf)));
 }
 
@@ -85,7 +88,7 @@ void	cache(t_fdf *fdf)
 		i++;
 		node = node->next;
 	}
-	if (i > 30)
+	if (i > 100)
 		ft_lstclear(&fdf->bind, clearcache);
 	if (!fdf->cache)
 		create_new_img(fdf);

@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 02:29:20 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 22:43:08 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 07:07:23 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,65 @@ void	point_set(void)
 		}
 		i++;
 	}
+	if (!fdf->disco)
+		fdf->rot = 1;
+	else
+	{
+		fdf->rot = 0;
+		if (fdf->rot_color == 0)
+			fdf->rot_color = 1;
+	}
 }
 
 void	connect_point(t_fdf *fdf, int i, int j)
 {
-	i = 0;
-	while (fdf->map[i])
-	{
-		j = 0;
-		while (fdf->map[i][j])
-		{
-			if (fdf->map[i][j + 1])
-				bresenham(fdf, *fdf->map[i][j], *fdf->map[i][j + 1]);
-			j++;
-		}
-		i++;
-	}
 	i = 0;
 	while (fdf->map[i + 1])
 	{
 		j = 0;
 		while (fdf->map[i][j])
 		{
-			bresenham(fdf, *fdf->map[i][j], *fdf->map[i + 1][j]);
+			if (fdf->map[i][j + 1])
+				bresenham(fdf, *fdf->map[i][j], *fdf->map[i][j + 1]);
+			if (fdf->map[i + 1][j])
+				bresenham(fdf, *fdf->map[i][j], *fdf->map[i + 1][j]);
 			j++;
 		}
 		i++;
+	}
+	i = fdf->height - 1;
+	j = fdf->width - 1;
+	while (j >= 0)
+	{
+		if (fdf->map[i][j + 1])
+			bresenham(fdf, *fdf->map[i][j], *fdf->map[i][j + 1]);
+		j--;
+	}
+}
+
+void	rev_connect_point(t_fdf *fdf, int i, int j)
+{
+	i = fdf->height - 2;
+	while (i >= 0)
+	{
+		j = fdf->width - 1;
+		while (j >= 0)
+		{
+			if (fdf->map[i][j + 1])
+				bresenham(fdf, *fdf->map[i][j], *fdf->map[i][j + 1]);
+			if (fdf->map[i + 1][j])
+				bresenham(fdf, *fdf->map[i][j], *fdf->map[i + 1][j]);
+			j--;
+		}
+		i--;
+	}
+	i = fdf->height - 1;
+	j = fdf->width - 1;
+	while (j >= 0)
+	{
+		if (fdf->map[i][j + 1])
+			bresenham(fdf, *fdf->map[i][j], *fdf->map[i][j + 1]);
+		j--;
 	}
 }
 

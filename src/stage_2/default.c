@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 18:35:31 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/12 02:24:52 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/12 07:06:07 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,7 @@ void	set_default(void)
 	fdf->zoom_size = 1;
 	fdf->line_color = 0xFFFFFF;
 	fdf->set_default = 1;
+	fdf->rot_color = 0;
+	fdf->rot = 0;
+	fdf->disco = 0;
 }

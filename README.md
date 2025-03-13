@@ -1,6 +1,6 @@
 # Readme FDF.
 
-![[Pasted image 20250313183036.png]]
+![[Pasted obsidian://open?vault=braincell&file=Pasted%20image%2020250313183036.png]]
 
 how to use this program.
 

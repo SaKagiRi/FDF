@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:07:57 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/12 01:50:17 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/13 18:27:04 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void	stage_3(void)
 int	main(int c, char **v, char **env)
 {
 	if (c != 2)
+	{
+		pnf("Usage: ./build/fdf [map-name].fdf\n");
 		return (1);
+	}
 	init();
 	stage_1(v, env);
 	stage_2();

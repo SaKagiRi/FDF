@@ -1,6 +1,6 @@
 # Readme FDF.
 
-![[Pasted obsidian://open?vault=braincell&file=Pasted%20image%2020250313183036.png]]
+![alt text](https://github.com/SaKagiRi/FDF/blob/main/img.png?raw=true)
 
 how to use this program.
 

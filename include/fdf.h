@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 07:56:00 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/12 06:55:25 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/13 19:06:18 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
 # define CONFIG "/.kconf"
-# define WIDTH 700
-# define HEIGHT 500
+# define WIDTH 1920
+# define HEIGHT 1080
 # define PI 3.14159
 
 typedef enum e_fnc

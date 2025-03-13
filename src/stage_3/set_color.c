@@ -6,13 +6,13 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 21:13:19 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/12 06:58:20 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/13 18:20:53 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-int		get_rgba(long rgba, int sw)
+int	get_rgba(long rgba, int sw)
 {
 	if (sw == 1)
 		return ((rgba >> 24) & 0xFF);

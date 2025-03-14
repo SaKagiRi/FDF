@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:24:43 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/11 22:19:13 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/14 19:58:24 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	decriptmap_and_store_width(t_fdf *fdf)
 	int		i;
 
 	map = fdf->all_map;
+	if (ft_lstsize(map) <= 0)
+		clear(1);
 	temp = ft_strtrim((char *)map->content, " \n");
 	fdf->width = count_word(temp, ' ');
 	free(temp);
